@@ -1,10 +1,10 @@
-export default function App() {
+import SingIn from "./pages/auth/SingIn";
+import { ThemeProvider } from "./theme/theneProvider";
 
+export default function App() {
   return (
-    <p className="text-red-500 text-8xl">
-      Teste
-    </p>
+  <ThemeProvider >
+    <SingIn/>
+  </ThemeProvider>
   )
 }
-
-

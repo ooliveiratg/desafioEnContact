@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-form: var(--bg-form);
+  --color-title-form: var(--title-form);
+  --color-text-form: var(--text-form);
+  --color-form: var(--stroke-form);
+  --background-image-gradient-form: var(--gradient-illustration);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-form: #ffffff;
+  --title-form: #131b2e;
+  --text-form: #464554;
+  --stroke-form: rgba(19, 27, 46, 0.1);
+  --gradient-illustration: linear-gradient(324deg, #4f46e5, #4648d4, #0058be);
+}
+
+.dark {
+  --bg-form: rgba(0, 0, 0, 0.9);
+  --title-form: #5084ff;
+  --text-form: #ffffff;
+  --stroke-form: rgba(255, 255, 255, 0.1);
+
+  --gradient-illustration: linear-gradient(154deg, #2d2d38, #575765, #54769d);
+}
