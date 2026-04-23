@@ -6,6 +6,7 @@
   --color-text-form: var(--text-form);
   --color-form: var(--stroke-form);
   --background-image-gradient-form: var(--gradient-illustration);
+  --font-inter: "Inter", sans-serif;
 }
 
 * {
