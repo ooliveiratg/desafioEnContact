@@ -1,5 +1,5 @@
 import { HiMiniAtSymbol } from "react-icons/hi2";
-import type { ISingIn } from "../../../interfaces/pages/SingIn/interfaces";
+import type { ISingIn } from "@/interfaces/pages/SingIn/interfaces";
 import { useState } from "react";
 import { MdLockOutline } from "react-icons/md";
 import { LuEye } from "react-icons/lu";

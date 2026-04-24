@@ -1,19 +1,17 @@
 import { useTheme } from "next-themes";
-import EnContactLogo from "../../../assets/png/enContact.png";
-import EmailLight from "../../../assets/svg/emailLight.svg";
+import EnContactLogo from "@/assets/png/enContact.png";
+import EmailLight from "@/assets/svg/emailLight.svg";
 import { MdEmail } from "react-icons/md";
 import { WiDaySunny } from "react-icons/wi";
-import { IconToggle } from "../../../utils/iconToggle";
+import { IconToggle } from "@//utils/iconToggle";
 import { RiMoonClearLine } from "react-icons/ri";
-import { FaArrowRight } from "react-icons/fa6";
-import { DataForm } from "./data";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import EmailDark from "@/assets/svg/emailDark.svg";
+import Form from "@/components/Form";
+import { DataForm } from "./data";
 
 export default function SingIn() {
   const { theme, setTheme } = useTheme();
+  const currentTheme = theme ?? "light";
   const data = DataForm();
   console.log(theme);
 
@@ -32,7 +30,7 @@ export default function SingIn() {
               <WiDaySunny size={30} color="black" />
             </div>
           }
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          onClick={() => setTheme(currentTheme === "light" ? "dark" : "light")}
         />
       </header>
       <div className="hidden lg:flex flex-1 bg-gradient-form relative ">
@@ -50,7 +48,7 @@ export default function SingIn() {
               Comunicação de alto crescimento para equipes modernas. Segura,
               rápida e incrivelmente intuitiva.
             </p>
-            {theme === "light" ? (
+            {currentTheme === "light" ? (
               <img
                 src={EmailLight}
                 alt="Email Light"
@@ -68,46 +66,7 @@ export default function SingIn() {
       </div>
 
       <div className="flex flex-1 bg-bg-form justify-center items-center px-4">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            data.onSubmit();
-          }}
-          className={`w-[541px]  lg:max-w-110 h-[441px] ${theme === "light" ? "bg-white" : "bg-white/5"} rounded-2xl flex flex-col justify-center items-center gap-8 p-[39px] backdrop-blur-[12px] shadow-[0px_20px_50px_rgba(255,255,255,0.05)]`}
-        >
-          <div className="flex flex-col gap-[4px] ">
-            <h2
-              className={`font-inter font-bold text-[40px] text-center lg:text-start w-full ${theme === "light" ? "text-[#131B2E]" : "text-[#5084FF]"}`}
-            >
-              {data.title}
-            </h2>
-            <p className="font-inter text-[18px] font-light text-center ">
-              {data.description}
-            </p>
-          </div>
-          {data.fields.map((field, index) => (
-            <div key={index} className="w-full">
-              <Label>{data.label?.[index]}</Label>
-              <Input
-                className="w-full h-full focus:outline-none outline-none bg-transparent  text-[16px] font-inter font-normal text-[#6B7280]"
-                id={data.label?.[index]}
-                type={field.type}
-                placeholder={field.placeholder}
-                value={field.value}
-                onChange={(e) => field.onChange?.(e)}
-                iconLeft={field.iconLeft}
-                iconRight={field.iconRight}
-              />
-            </div>
-          ))}
-          <Button
-            type="submit"
-            className="w-full flex gap-[8px] bg-gradient-button h-[48px] text-white items-center justify-center font-inter font-semibold text-[16px]"
-          >
-            Entrar
-            <FaArrowRight />
-          </Button>
-        </form>
+        <Form theme={currentTheme} {...data} />
       </div>
     </section>
   );
