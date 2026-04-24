@@ -9,6 +9,7 @@
   --color-bg-form: var(--bg-form);
   --color-title-form: var(--title-form);
   --color-text-form: var(--text-form);
+  --color-bg-header: var(--bg-header);
   --color-form: var(--stroke-form);
   --background-image-gradient-form: var(--gradient-illustration);
   --font-inter: "Inter", sans-serif;
@@ -34,9 +35,10 @@
   --bg-form: #f2f3ff;
   --title-form: #131b2e;
   --text-form: #464554;
+  --bg-header: #ffffff;
   --stroke-form: rgba(19, 27, 46, 0.1);
   --gradient-illustration: linear-gradient(324deg, #4f46e5, #4648d4, #0058be);
-  --gradient-button: linear-gradient(90deg, #4648D4, #0058BE);
+  --gradient-button: linear-gradient(90deg, #4648d4, #0058be);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -76,7 +78,7 @@
   --title-form: #5084ff;
   --text-form: #ffffff;
   --stroke-form: rgba(255, 255, 255, 0.1);
-
+  --color-bg-header: #000000;
   --gradient-illustration: linear-gradient(154deg, #2d2d38, #575765, #54769d);
 
   --background: oklch(0.145 0 0);
