@@ -1,12 +1,15 @@
 import { Toaster } from "sonner";
-import SingIn from "./pages/auth/SingIn";
 import { ThemeProvider } from "./theme/theneProvider";
+import { BrowserRouter } from "react-router-dom";
+import { Router } from "./Router";
 
 export default function App() {
   return (
     <ThemeProvider>
       <Toaster />
-      <SingIn />
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

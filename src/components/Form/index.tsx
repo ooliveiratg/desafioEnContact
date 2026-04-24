@@ -13,7 +13,7 @@ export default function Form({
   title,
   label
 }: IForm) {
-  
+
   return (
     <form
       onSubmit={(e) => {
@@ -49,7 +49,7 @@ export default function Form({
       ))}
       <Button
         type="submit"
-        className="w-full flex gap-[8px] bg-gradient-button h-[48px] text-white items-center justify-center font-inter font-semibold text-[16px]"
+        className="w-full flex cursor-pointer gap-[8px] bg-gradient-button h-[48px] text-white items-center justify-center font-inter font-semibold text-[16px]"
       >
         Entrar
         <FaArrowRight />

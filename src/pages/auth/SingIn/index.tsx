@@ -16,27 +16,28 @@ export default function SingIn() {
   console.log(theme);
 
   return (
-    <section className="flex flex-row  min-h-screen overflow-hidden">
+    <section className="flex flex-row h-screen overflow-hidden overscroll-y-none overscroll-x-none">
       <header className="fixed top-[16px] left-[24px] right-[24px] z-1 flex items-center justify-between">
         <img src={EnContactLogo} alt="EnContact Logo" className="w-16 h-16" />
         <IconToggle
           iconOpen={
-            <div className="flex p-[8px] items-center justify-center rounded-full bg-[rgba(80,132,255,0.3)]">
-              <RiMoonClearLine size={30} color="white" />
-            </div>
-          }
-          iconClose={
             <div className="flex w-10 h-10 items-center justify-center rounded-full bg-[#FF7700]">
               <WiDaySunny size={30} color="black" />
+            </div>
+
+          }
+          iconClose={
+            <div className="flex p-[8px] items-center justify-center rounded-full bg-[rgba(80,132,255,0.3)]">
+              <RiMoonClearLine size={30} color="white" />
             </div>
           }
           onClick={() => setTheme(currentTheme === "light" ? "dark" : "light")}
         />
       </header>
-      <div className="hidden lg:flex flex-1 bg-gradient-form relative ">
+      <div className="hidden lg:flex flex-1 bg-gradient-form relative overflow-hidden">
         <div className="absolute -top-12 -right-12 w-96 h-96 rounded-full bg-[rgba(129,140,248,0.2)] blur-3xl"></div>
         <div className="absolute -bottom-12 -left-12 w-96 h-96 rounded-full bg-[rgba(255,255,255,0.2)] blur-3xl"></div>
-        <div className="flex relative w-full min-h-full justify-center items-center">
+        <div className="flex relative w-full h-full justify-center items-center">
           <div className="flex items-center justify-center gap-[15px] flex-col max-w-[441px]">
             <div className="w-[62px] h-14 flex justify-center items-center bg-white/10 rounded-xl">
               <MdEmail size={30} color="white" />
@@ -65,7 +66,7 @@ export default function SingIn() {
         </div>
       </div>
 
-      <div className="flex flex-1 bg-bg-form justify-center items-center px-4">
+      <div className="flex flex-1 bg-bg-form justify-center items-center px-4 overflow-hidden">
         <Form theme={currentTheme} {...data} />
       </div>
     </section>
