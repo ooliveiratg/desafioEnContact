@@ -1,14 +1,6 @@
-
 import type React from "react";
 
-export interface IInputUIProps {
-  label?: string;
-  placeholder?: string;
-  value: string;
-  onChange: (value: string) => void;
-  hasIconLeft?: boolean;
-  hasIconRight?: boolean;
-  iconRight?: React.ReactNode;
+export interface InputProps extends React.ComponentProps<"input"> {
   iconLeft?: React.ReactNode;
-  type?: React.HTMLInputTypeAttribute;
+  iconRight?: React.ReactNode;
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { IIconToggleProps } from "../../interfaces/ui/utils/iconToggle/interface";
+import type { IIconToggleProps } from "@/interfaces/utils/iconToggle/interface";
 
 export function IconToggle({ ...props }: IIconToggleProps) {
   const [isOpen, setIsOpen] = useState(false);
