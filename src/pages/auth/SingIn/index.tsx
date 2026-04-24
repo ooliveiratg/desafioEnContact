@@ -15,6 +15,7 @@ import EmailDark from "@/assets/svg/emailDark.svg";
 export default function SingIn() {
   const { theme, setTheme } = useTheme();
   const data = DataForm();
+  console.log(theme);
 
   return (
     <section className="flex flex-row  min-h-screen overflow-hidden">
@@ -22,29 +23,25 @@ export default function SingIn() {
         <img src={EnContactLogo} alt="EnContact Logo" className="w-16 h-16" />
         <IconToggle
           iconOpen={
-            <div className="flex w-10 h-10 items-center justify-center rounded-full bg-[#FF7700]">
-              <WiDaySunny size={30} color="black" />
+            <div className="flex p-[8px] items-center justify-center rounded-full bg-[rgba(80,132,255,0.3)]">
+              <RiMoonClearLine size={30} color="white" />
             </div>
           }
           iconClose={
-            <div className="flex p-[8px] items-center justify-center rounded-full bg-[rgba(80,132,255,0.3)]">
-              <RiMoonClearLine size={30} color="white" />
+            <div className="flex w-10 h-10 items-center justify-center rounded-full bg-[#FF7700]">
+              <WiDaySunny size={30} color="black" />
             </div>
           }
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         />
       </header>
-      <div className="flex flex-1 bg-gradient-form relative">
+      <div className="hidden lg:flex flex-1 bg-gradient-form relative ">
         <div className="absolute -top-12 -right-12 w-96 h-96 rounded-full bg-[rgba(129,140,248,0.2)] blur-3xl"></div>
         <div className="absolute -bottom-12 -left-12 w-96 h-96 rounded-full bg-[rgba(255,255,255,0.2)] blur-3xl"></div>
         <div className="flex relative w-full min-h-full justify-center items-center">
           <div className="flex items-center justify-center gap-[15px] flex-col max-w-[441px]">
             <div className="w-[62px] h-14 flex justify-center items-center bg-white/10 rounded-xl">
-              <MdEmail
-                size={30}
-                color="white"
-                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              />
+              <MdEmail size={30} color="white" />
             </div>
             <h2 className="font-inter font-bold text-[40px] max-w-98 text-white text-center">
               Domine sua caixa de entrada.
@@ -70,17 +67,17 @@ export default function SingIn() {
         </div>
       </div>
 
-      <div className="flex flex-1 bg-bg-form justify-center items-center">
+      <div className="flex flex-1 bg-bg-form justify-center items-center px-4">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             data.onSubmit();
           }}
-          className={`w-110 h-[441px] ${theme === "light" ? "bg-white" : "bg-white/5"} rounded-2xl flex flex-col justify-center items-center gap-8 p-[39px]`}
+          className={`w-[541px]  lg:max-w-110 h-[441px] ${theme === "light" ? "bg-white" : "bg-white/5"} rounded-2xl flex flex-col justify-center items-center gap-8 p-[39px] backdrop-blur-[12px] shadow-[0px_20px_50px_rgba(255,255,255,0.05)]`}
         >
-          <div className="flex flex-col gap-[4px]">
+          <div className="flex flex-col gap-[4px] ">
             <h2
-              className={`font-inter font-bold text-[40px] w-full ${theme === "light" ? "text-[#131B2E]" : "text-[#5084FF]"}`}
+              className={`font-inter font-bold text-[40px] text-center lg:text-start w-full ${theme === "light" ? "text-[#131B2E]" : "text-[#5084FF]"}`}
             >
               {data.title}
             </h2>
