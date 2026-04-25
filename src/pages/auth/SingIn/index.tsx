@@ -16,7 +16,7 @@ export default function SingIn() {
 
   return (
     <section className="flex flex-row h-screen overflow-hidden overscroll-y-none overscroll-x-none">
-      <header className="fixed top-[16px] left-[24px] right-[24px] z-1 flex items-center justify-between">
+      <header className="fixed top-[16px] left-[24px] right-[24px] z-10 flex items-center justify-between">
         <img src={EnContactLogo} alt="EnContact Logo" className="w-16 h-16" />
         <IconToggle
           iconOpen={
