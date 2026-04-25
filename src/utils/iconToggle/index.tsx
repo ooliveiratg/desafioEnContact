@@ -5,7 +5,8 @@ export function IconToggle({ ...props }: IIconToggleProps) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <button
-    className="cursor-pointer"
+      type="button"
+      className="cursor-pointer"
       onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setIsOpen(!isOpen);
