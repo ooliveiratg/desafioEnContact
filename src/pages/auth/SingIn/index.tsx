@@ -2,15 +2,13 @@ import { useTheme } from "next-themes";
 import EnContactLogo from "@/assets/png/enContact.png";
 import EmailLight from "@/assets/svg/emailLight.svg";
 import { MdEmail } from "react-icons/md";
-import { WiDaySunny } from "react-icons/wi";
-import { IconToggle } from "@//utils/iconToggle";
-import { RiMoonClearLine } from "react-icons/ri";
 import EmailDark from "@/assets/svg/emailDark.svg";
 import Form from "@/components/Form";
 import { DataForm } from "./data";
+import { ToggleTheme } from "@/ui/toggleTheme";
 
 export default function SingIn() {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const currentTheme = theme ?? "light";
   const data = DataForm();
 
@@ -18,20 +16,7 @@ export default function SingIn() {
     <section className="flex flex-row h-screen overflow-hidden overscroll-y-none overscroll-x-none">
       <header className="fixed top-[16px] left-[24px] right-[24px] z-10 flex items-center justify-between">
         <img src={EnContactLogo} alt="EnContact Logo" className="w-16 h-16" />
-        <IconToggle
-          iconOpen={
-            <div className="flex w-10 h-10 items-center justify-center rounded-full bg-[#FF7700]">
-              <WiDaySunny size={30} color="black" />
-            </div>
-
-          }
-          iconClose={
-            <div className="flex p-[8px] items-center justify-center rounded-full bg-[rgba(80,132,255,0.3)]">
-              <RiMoonClearLine size={30} color="white" />
-            </div>
-          }
-          onClick={() => setTheme(currentTheme === "light" ? "dark" : "light")}
-        />
+        <ToggleTheme />
       </header>
       <div className="hidden lg:flex flex-1 bg-gradient-form relative overflow-hidden">
         <div className="absolute -top-12 -right-12 w-96 h-96 rounded-full bg-[rgba(129,140,248,0.2)] blur-3xl"></div>

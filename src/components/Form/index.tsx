@@ -20,7 +20,7 @@ export default function Form({
         e.preventDefault();
         onSubmit();
       }}
-      className={`max-w-110  md:w-[550px] h-[441px] ${theme === "light" ? "bg-white" : "bg-white/5"} rounded-2xl flex flex-col justify-center items-center gap-8 p-[39px] backdrop-blur-[12px] shadow-[0px_20px_50px_rgba(255,255,255,0.05)]`}
+      className={`max-w-110  md:w-[550px] h-[441px] ${theme === "light" ? "bg-white" : "bg-white/5"} border border-white/10 rounded-2xl flex flex-col justify-center items-center gap-8 p-[39px] backdrop-blur-md  shadow-[0px_20px_50px_rgba(255,255,255,0.1)]`}
     >
       <div className="flex flex-col gap-[4px] ">
         <h2
@@ -36,6 +36,8 @@ export default function Form({
         <div key={index} className="w-full">
           <Label>{label?.[index]}</Label>
           <Input
+          typeInputWithIcon="primary"
+            icon
             className="w-full h-full focus:outline-none outline-none bg-transparent  text-[16px] font-inter font-normal text-[#6B7280]"
             id={field.name}
             type={field.type}
