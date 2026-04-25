@@ -13,7 +13,6 @@ export default function SingIn() {
   const { theme, setTheme } = useTheme();
   const currentTheme = theme ?? "light";
   const data = DataForm();
-  console.log(theme);
 
   return (
     <section className="flex flex-row h-screen overflow-hidden overscroll-y-none overscroll-x-none">
