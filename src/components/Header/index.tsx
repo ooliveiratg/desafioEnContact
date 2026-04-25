@@ -7,7 +7,7 @@ export function Header() {
         <img
           src={EnContact}
           alt="Logo da EnContact"
-          className="w-[48pxpx] h-[48px]"
+          className="w-[48px] h-[48px]"
         />
         <Input icon={false} className="bg-white/5 border-none focus:outline-none focus:ring-0 focus:border-transparent"/>
       </div>
