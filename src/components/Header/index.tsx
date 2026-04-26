@@ -6,7 +6,7 @@ import { DropdownMenuAvatar } from "@/ui/dropdownMenuAvatar";
 
 export function Header() {
   return (
-    <header className="w-full pt-[9px] px-[24px] fixed z-20 bg-bg-header flex flex-row items-center justify-between">
+    <header className="w-full pt-[9px] px-[24px] bg-bg-header flex flex-row items-center justify-between shadow-header border-b border-white/20">
       <div className="flex flex-row gap-[32px] items-center">
         <img
           src={EnContact}
@@ -23,7 +23,7 @@ export function Header() {
       </div>
       <div className="flex flex-row gap-[32px] items-center">
         <ToggleTheme />
-        <DropdownMenuAvatar/>
+        <DropdownMenuAvatar />
       </div>
     </header>
   );

@@ -26,10 +26,10 @@ export default function SingIn() {
             <div className="w-[62px] h-14 flex justify-center items-center bg-white/10 rounded-xl">
               <MdEmail size={30} color="white" />
             </div>
-            <h2 className="font-inter font-bold text-[40px] max-w-98 text-white text-center">
+            <h2 className=" font-bold text-[40px] max-w-98 text-white text-center">
               Domine sua caixa de entrada.
             </h2>
-            <p className="font-inter text-[18px] font-light text-center text-white">
+            <p className=" text-[18px] font-light text-center text-white">
               Comunicação de alto crescimento para equipes modernas. Segura,
               rápida e incrivelmente intuitiva.
             </p>
