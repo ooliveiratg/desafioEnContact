@@ -49,7 +49,7 @@ export default function Home() {
         <Button
           onClick={() => setRemoved(true)}
           variant={"ghost"}
-          className={`flex flex-row gap-[8px] ${theme === "light" && "hover:bg-black/30"}`}
+          className={`flex flex-row gap-[8px] ${theme === "light" ? "hover:bg-black/30" : ""}`}
         >
           <img src={Archive} alt="archive" />
           <span className=" text-[18px]">Arquivar</span>
