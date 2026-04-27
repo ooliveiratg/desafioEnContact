@@ -1,17 +1,24 @@
 import { cn } from "@/lib/utils";
 import type { InputProps } from "@/interfaces/ui/inputUI/interfaces";
-
-function Input({ className, type, iconLeft, iconRight,icon, ...props }: InputProps) {
+function Input({
+  className,
+  type,
+  iconLeft,
+  iconRight,
+  icon,
+  typeInputWithIcon,  
+  ...props
+}: InputProps) {
   return (
     <>
       {icon ? (
-        <div className="flex h-[57px] px-[16px] bg-white border rounded-xl items-center gap-2 border-[#C7C4D7]">
+        <div className={`flex px-[16px] ${typeInputWithIcon === "primary" ? "bg-white border-[#C7C4D7] h-[57px] rounded-xl" : "bg-white/5 h-[32px] rounded-[8px]"} items-center gap-2 `}>
           {iconLeft}
 
           <input
             type={type}
             className={cn(
-              "h-8 w-full bg-transparent outline-none text-sm placeholder:text-muted-foreground",
+              "h-full w-full bg-transparent outline-none text-sm placeholder:text-muted-foreground",
               className,
             )}
             {...props}
