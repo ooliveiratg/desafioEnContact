@@ -15,7 +15,6 @@ export default function Home() {
     selectedAccountName: string | null;
   }>();
   const { theme } = useTheme();
-  const [nameAccount, setNameAccount] = useState<string | null>(null);
   const [accountData, setAccountData] = useState<IAccount | undefined>(
     undefined,
   );
@@ -23,6 +22,8 @@ export default function Home() {
   useEffect(() => {
     if (selectedAccountId !== null) {
       async function fetchMenu() {
+        setAccountData(undefined);
+        setRemoved(false);
         const response = await AccountsMessage({
           id: Number(selectedAccountId),
         });
@@ -32,31 +33,29 @@ export default function Home() {
           );
           return;
         }
-        setNameAccount(selectedAccountName);
+
         setAccountData(response.data);
       }
-      fetchMenu();
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setAccountData(undefined);
-      setRemoved(false);
+
+      if (selectedAccountId) fetchMenu();
     }
   }, [selectedAccountId]);
 
   return (
     <section className="flex flex-col h-full pb-[20px]">
       <div
-        className={`w-full h-[77px] border-b pl-[16px] ${theme === "light" ? "border-black/60" : "border-white"} flex items-center`}
+        className={`w-full h-[77px] border-b pl-[16px] ${theme === "light" ? "border-black/60" : "border-white "} flex items-center`}
       >
         <Button
           onClick={() => setRemoved(true)}
           variant={"ghost"}
-          className={`flex flex-row gap-[8px] ${theme === "light" ? "hover:bg-black/30" : ""}`}
+          className={`flex flex-row gap-[8px] ${theme === "light" && "hover:bg-black/30"}`}
         >
           <img src={Archive} alt="archive" />
-          <h1 className=" text-[18px]">Arquivar</h1>
+          <span className=" text-[18px]">Arquivar</span>
         </Button>
       </div>
-      <div className="flex flex-col w-full h-full oveflow-y-auto">
+      <div className="flex flex-col w-full h-full overflow-y-auto">
         {accountData && accountData.subMenuItems.length === 0 ? (
           <p className="pl-[16px] text-[18px] font-bold">
             Nenhum item encontrado.
@@ -65,7 +64,7 @@ export default function Home() {
           <Card
             accountData={accountData}
             removed={removed}
-            selectAccounted={nameAccount || ""}
+            selectAccounted={selectedAccountName || ""}
           />
         )}
       </div>

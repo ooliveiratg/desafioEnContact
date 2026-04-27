@@ -72,8 +72,8 @@ export function AppSidebar({
           Painel de suporte
         </p>
       </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup className="flex flex-col pt-[32px] ">
+      <SidebarContent className="overflow-y-auto">
+        <SidebarGroup className="flex flex-col pt-[32px]  min-h-0">
           <SidebarGroup>
             <SidebarMenu className="flex flex-row w-full justify-between items-center">
               <SidebarMenu className="flex flex-row gap-[12px] items-center">
@@ -87,6 +87,7 @@ export function AppSidebar({
             <SidebarGroupLabel className="text-[#94A3B8] text-[12px] uppercase font-bold">
               Accounts
             </SidebarGroupLabel>
+            
             {menuData &&
               menuData.map((menu) => (
                 <Collapsible key={menu.id} defaultOpen className="pt-[12px]">
@@ -95,7 +96,7 @@ export function AppSidebar({
                     className="flex flex-col  min-w-full "
                   >
                     <SidebarMenuButton
-                      className={`flex flex-row w-[full] gap-[12px] justify-between items-center cursor-pointer ${theme === "light" ? "hover:bg-blue-500/50" : "hover:bg-blue-500/30"}`}
+                      className={`flex flex-row w-full gap-[12px] justify-between items-center cursor-pointer ${theme === "light" ? "hover:bg-blue-500/50" : "hover:bg-blue-500/30"}`}
                     >
                       <SidebarMenu className="flex flex-row gap-[12px] items-center">
                         <HiMiniUsers
