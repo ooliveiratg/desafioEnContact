@@ -15,8 +15,8 @@ export function Card({ accountData, removed, selectAccounted }: ICard) {
   const toggleCheck = (index: number) => {
     setChecked((itens) =>
       itens.includes(index)
-        ? checked.filter((id) => id !== index)
-        : [...checked, index],
+        ? itens.filter((id) => id !== index)
+        : [...itens, index],
     );
   };
   const { theme } = useTheme();
