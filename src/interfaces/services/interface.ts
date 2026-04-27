@@ -11,8 +11,17 @@ export interface IMenusAccount {
 
 export interface IAccount {
   id: number;
-  name: string;
-  subject: string;
-  owner: string;
-  users: string[];
+  subMenuItems: [
+    {
+      id: string
+      name: string;
+      subject: string;
+      owner: string;
+      users: [string];
+    },
+  ];
+}
+
+export interface IAccountsMessage {
+  id: number;
 }

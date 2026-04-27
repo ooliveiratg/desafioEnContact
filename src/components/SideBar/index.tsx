@@ -26,8 +26,10 @@ import { MenusAccount } from "@/services/menusAccount";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import type { IMenusAccount } from "@/interfaces/services/interface";
+import Inbox from "@/assets/svg/inbox.svg";
+import type { IAppSidebar } from "@/interfaces/components/Sidebar/interface";
 
-export function AppSidebar() {
+export function AppSidebar({ onAccountSelect }: IAppSidebar) {
   const { theme } = useTheme();
   const router = useNavigate();
   const [menuData, setMenuData] = useState<IMenusAccount[] | undefined>(
@@ -47,7 +49,13 @@ export function AppSidebar() {
     fetchMenu();
   }, []);
   return (
-    <Sidebar>
+    <Sidebar
+      className={
+        theme === "light"
+          ? "border-l border-black/60"
+          : "border-r border-[#E2E8F0]/10"
+      }
+    >
       <SidebarHeader>
         <h2
           className={`font-bold text-[#0F172A] text-[22px] ${theme === "light" ? "text-[#0F172A]" : "text-[#5084FF]"}`}
@@ -76,26 +84,33 @@ export function AppSidebar() {
             {menuData &&
               menuData.map((itens, index) => (
                 <Collapsible key={index} defaultOpen className="pt-[12px]">
-                  <CollapsibleTrigger asChild className="flex flex-col  min-w-full ">
-                      <SidebarMenuButton className="flex flex-row w-[full] gap-[12px] justify-between items-center">
-                        <SidebarMenu className="flex flex-row gap-[12px] items-center">
-                          <HiMiniUsers size={18} />
-                          <h3 className="font-semibold text-[13px] text-white">
-                            {itens.name}
-                          </h3>
-                        </SidebarMenu>
-                        <div className="bg-white/10 px-[8px] rounded-full">
-                          <p className="font-bold text-[12px]">62</p>
-                        </div>
-                      </SidebarMenuButton>
+                  <CollapsibleTrigger
+                    asChild
+                    className="flex flex-col  min-w-full "
+                  >
+                    <SidebarMenuButton className="flex flex-row w-[full] gap-[12px] justify-between items-center">
+                      <SidebarMenu className="flex flex-row gap-[12px] items-center">
+                        <HiMiniUsers size={18} />
+                        <h3 className="font-semibold text-[13px] text-white">
+                          {itens.name}
+                        </h3>
+                      </SidebarMenu>
+                      <div className="bg-white/10 px-[8px] rounded-full">
+                        <p className="font-bold text-[12px]">62</p>
+                      </div>
+                    </SidebarMenuButton>
                   </CollapsibleTrigger>
 
                   <CollapsibleContent>
                     {itens.subMenus.map((subItens, subIndex) => (
                       <SidebarMenuSub key={subIndex}>
                         <SidebarMenuSubItem>
-                          <SidebarMenuSubButton>
-                            <span>{subItens.name} </span>
+                          <SidebarMenuSubButton
+                            onClick={() => {
+                              onAccountSelect(subItens.id.toString());
+                            }}
+                          >
+                            <span>{subItens.name}</span>
                             <span className="ml-auto">15</span>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
@@ -104,6 +119,14 @@ export function AppSidebar() {
                   </CollapsibleContent>
                 </Collapsible>
               ))}
+            <SidebarMenu className="bg-gradient-button px-[12px] py-[8px] mt-[12px] rounded-[8px]">
+              <div className="flex flex-row gap-[12px]">
+                <img src={Inbox} alt="Inbox" />
+                <h4 className="font-semibold text-[13.9px] text-[#FDFEFF]">
+                  Inbox
+                </h4>
+              </div>
+            </SidebarMenu>
           </SidebarGroup>
 
           <SidebarFooter className="flex flex-col">

@@ -20,8 +20,8 @@ import { useNavigate } from "react-router-dom";
 export function DropdownMenuAvatar() {
     const router = useNavigate();
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <DropdownMenu >
+      <DropdownMenuTrigger asChild className="cursor-pointer">
         <Button variant="ghost" size="icon" className="rounded-full">
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" alt="shadcn" />

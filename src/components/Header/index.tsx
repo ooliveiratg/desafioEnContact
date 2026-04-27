@@ -3,10 +3,14 @@ import { Input } from "@/ui/input";
 import { ToggleTheme } from "@/ui/toggleTheme";
 import { IoSearch } from "react-icons/io5";
 import { DropdownMenuAvatar } from "@/ui/dropdownMenuAvatar";
+import { useTheme } from "next-themes";
 
 export function Header() {
+  const { theme } = useTheme();
   return (
-    <header className="w-full pt-[9px] px-[24px] bg-bg-header flex flex-row items-center justify-between shadow-header border-b border-white/20">
+    <header
+      className={`w-full pt-[9px] px-[24px] bg-bg-header flex flex-row items-center justify-between shadow-header ${theme === "light" ? "border-b border-black/40" : "border-b border-white/20"}`}
+    >
       <div className="flex flex-row gap-[32px] items-center">
         <img
           src={EnContact}
