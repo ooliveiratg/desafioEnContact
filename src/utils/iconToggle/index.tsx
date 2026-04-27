@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { IIconToggleProps } from "@/interfaces/utils/iconToggle/interface";
 
 export function IconToggle({ ...props }: IIconToggleProps) {
-  const [isOpen, setIsOpen] = useState(props.initialState);
+  const [isOpen, setIsOpen] = useState(props.initialState ?? false)
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsOpen(props.initialState);
-  }, [props.initialState]);
   return (
     <button
       type="button"

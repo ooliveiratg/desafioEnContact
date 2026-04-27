@@ -8,17 +8,17 @@ import { IconToggle } from "@/utils/iconToggle";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
-export function DataForm(): ISingIn {
+export function useSignInForm(): ISingIn {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
   const handleSubmitForm = () => {
-    if(!email || !password) {
+    if (!email || !password) {
       toast.info("Preencha todos os campos");
       return;
     }
-    if(email === "admin@admin" && password === "admin") {
+    if (email === "admin@admin" && password === "admin") {
       toast.success("Login realizado com sucesso!");
       navigate("/home");
     } else {
@@ -47,6 +47,7 @@ export function DataForm(): ISingIn {
             onClick={() => setVisible(!visible)}
             iconOpen={<LuEye size={20} color="rgba(9,9,9,0.45)" />}
             iconClose={<LuEyeClosed size={20} color="rgba(9,9,9,0.45)" />}
+            initialState={false}
           />
         ),
         value: password,

@@ -1,12 +1,10 @@
 export interface IMenusAccount {
   id: number;
   name: string;
-  subMenus: [
-    {
+  subMenus:  {
       id: number;
       name: string;
-    },
-  ];
+    }[]
 }
 
 export interface IAccount {

@@ -3,51 +3,50 @@ import { Header } from "@/components/Header";
 import { AppSidebar } from "@/components/SideBar";
 import { SidebarProvider } from "@/ui/sidebar";
 import { Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function LayoutHome() {
-  const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
-  const [ismobile, setIsMobile] = useState(window.innerWidth < 768);
-  console.log("selectedAccountdddasdada:", selectedAccount);
+  const [selectedAccountId, setSelectedAccountId] = useState<string | null>(
+    null,
+  );
+  const [selectedAccountName, setSelectedAccountName] = useState<string | null>(
+    null,
+  );
+  const isMobile = useIsMobile();
 
-  useEffect(() => {
-    function handleResize() {
-      setIsMobile(window.innerWidth < 768);
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  });
   return (
     <SidebarProvider className="h-screen ">
       <div className="flex flex-col h-full w-full ">
         <Header
-          onAccountSelect={(accountId) => setSelectedAccount(accountId)}
+          onAccountSelect={(accountId) => setSelectedAccountId(accountId)}
         />
 
         <ResizablePanelGroup
           orientation="horizontal"
           className="flex-1 overflow-hidden"
         >
-          {!ismobile && (
+          {!isMobile && (
             <ResizablePanel defaultSize={"20%"} minSize={"20%"} maxSize={"50%"}>
               <AppSidebar
-                onAccountSelect={(accountId) => setSelectedAccount(accountId)}
+                onAccountSelect={(accountId) => setSelectedAccountId(accountId)}
                 isMobile={false}
+                accountSelected={(accountName) => setSelectedAccountName(accountName)}
               />
             </ResizablePanel>
           )}
 
-          {!ismobile && (
+          {!isMobile && (
             <ResizablePanel>
               <main className="h-full">
-                <Outlet context={{ selectedAccount }} />
+                <Outlet context={{ selectedAccountId, selectedAccountName }} />
               </main>
             </ResizablePanel>
           )}
         </ResizablePanelGroup>
-        {ismobile && (
+        {isMobile && (
           <main className="h-full">
-            <Outlet context={{ selectedAccount }} />
+            <Outlet context={{ selectedAccountId, selectedAccountName }} />
           </main>
         )}
       </div>

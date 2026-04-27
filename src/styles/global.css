@@ -16,6 +16,8 @@
   --background-image-gradient-button: var(--gradient-button);
   --color-text-sidebar: var(--color-text-sidebar-value);
   --shadow-header: var(--shadow-header-value);
+  --color-title-sidebar: var(--color-title-sidebar);
+  --color-subtitle-sidebar: var(--color-subtitle-sidebar);
   --color-cards-hover: var(--color-cards-hover-value);
 }
 
@@ -44,6 +46,7 @@
   --stroke-form: rgba(19, 27, 46, 0.1);
   --gradient-illustration: linear-gradient(324deg, #4f46e5, #4648d4, #0058be);
   --gradient-button: linear-gradient(90deg, #4648d4, #0058be);
+  --color-subtitle-sidebar: #64748b;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -75,6 +78,8 @@
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(1 0 0 / 20%);
+  --color-title-sidebar: #0F172A;
+  --color-subtitle-sidebar: #64748b;
   --color-cards-hover-value: rgba(0,0,0,0.5);
   --sidebar-ring: oklch(0.708 0 0);
 }
@@ -83,6 +88,8 @@
   --bg-form: rgba(0, 0, 0, 0.9);
   --title-form: #5084ff;
   --text-form: #ffffff;
+  --color-title-sidebar: #5084FF;
+  --color-subtitle-sidebar: #FFFFFF;
   --stroke-form: rgba(255, 255, 255, 0.1);
   --color-text-sidebar-value: #FFFFFF;
   --color-bg-header: #000000;

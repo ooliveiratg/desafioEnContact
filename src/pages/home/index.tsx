@@ -10,8 +10,9 @@ import { Card } from "@/components/Card";
 import { useTheme } from "next-themes";
 
 export default function Home() {
-  const { selectedAccount } = useOutletContext<{
-    selectedAccount: string | null;
+  const { selectedAccountId, selectedAccountName } = useOutletContext<{
+    selectedAccountId: string | null;
+    selectedAccountName: string | null;
   }>();
   const { theme } = useTheme();
   const [accountData, setAccountData] = useState<IAccount | undefined>(
@@ -19,27 +20,31 @@ export default function Home() {
   );
   const [removed, setRemoved] = useState(false);
   useEffect(() => {
-    if (selectedAccount !== null) {
+    if (selectedAccountId !== null) {
       async function fetchMenu() {
-        const response = await AccountsMessage({ id: Number(selectedAccount) });
+        setAccountData(undefined);
+        setRemoved(false);
+        const response = await AccountsMessage({
+          id: Number(selectedAccountId),
+        });
         if (!response.success) {
-          toast.error(response.message || "Erro ao buscar as mensagens da conta");
+          toast.error(
+            response.message || "Erro ao buscar as mensagens da conta",
+          );
           return;
         }
-        console.log("Resposta da dsadsada API:", response);
+
         setAccountData(response.data);
       }
-      fetchMenu();
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setAccountData(undefined);
-      setRemoved(false);
+
+      if (selectedAccountId) fetchMenu();
     }
-  }, [selectedAccount]);
+  }, [selectedAccountId]);
 
   return (
     <section className="flex flex-col h-full pb-[20px]">
       <div
-        className={`w-full h-[77px] border-b pl-[16px] ${theme === "light" ? "border-black/60" : "border-white"} flex items-center`}
+        className={`w-full h-[77px] border-b pl-[16px] ${theme === "light" ? "border-black/60" : "border-white "} flex items-center`}
       >
         <Button
           onClick={() => setRemoved(true)}
@@ -47,16 +52,20 @@ export default function Home() {
           className={`flex flex-row gap-[8px] ${theme === "light" ? "hover:bg-black/30" : ""}`}
         >
           <img src={Archive} alt="archive" />
-          <h1 className=" text-[18px]">Arquivar</h1>
+          <span className=" text-[18px]">Arquivar</span>
         </Button>
       </div>
-      <div className="flex flex-col w-full h-full oveflow-y-auto">
+      <div className="flex flex-col w-full h-full overflow-y-auto">
         {accountData && accountData.subMenuItems.length === 0 ? (
           <p className="pl-[16px] text-[18px] font-bold">
             Nenhum item encontrado.
           </p>
         ) : (
-          <Card accountData={accountData} removed={removed} />
+          <Card
+            accountData={accountData}
+            removed={removed}
+            selectAccounted={selectedAccountName || ""}
+          />
         )}
       </div>
     </section>

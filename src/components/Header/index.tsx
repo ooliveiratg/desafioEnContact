@@ -5,19 +5,13 @@ import { IoSearch } from "react-icons/io5";
 import { DropdownMenuAvatar } from "@/ui/dropdownMenuAvatar";
 import { useTheme } from "next-themes";
 import { MobileSidebar } from "../MobileSidebar";
-import { useEffect, useState } from "react";
 import type { IGlobalOnAccountSelect } from "@/interfaces/global/interface";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function Header({ onAccountSelect }: IGlobalOnAccountSelect) {
   const { theme } = useTheme();
-  const [ismobile, setIsMobile] = useState(window.innerWidth < 768);
-  useEffect(() => {
-    function handleResize() {
-      setIsMobile(window.innerWidth < 768);
-    }
+  const isMobile = useIsMobile()
 
-    handleResize();
-  }, []);
   return (
     <header
       className={`w-full pt-[9px] px-[24px] bg-bg-header flex flex-row items-center justify-between shadow-header ${theme === "light" ? "border-b border-black/40" : "border-b border-white/20"}`}
@@ -31,11 +25,12 @@ export function Header({ onAccountSelect }: IGlobalOnAccountSelect) {
         <div className="md:hidden">
           <MobileSidebar onAccountSelect={onAccountSelect} />
         </div>
-        {!ismobile && (
+        {!isMobile && (
           <Input
             iconLeft={<IoSearch color="#94A3B8" size={18} />}
             placeholder="Pesquisar conversas..."
             typeInputWithIcon="secondary"
+            aria-label="barra de pesquisa"
             icon={true}
             className="border-none focus:outline-none focus:ring-0 focus:border-transparent"
           />
