@@ -23,7 +23,7 @@ export default function Home() {
       async function fetchMenu() {
         const response = await AccountsMessage({ id: Number(selectedAccount) });
         if (!response.success) {
-          toast.error(response.message || "Erro ao buscar os menus");
+          toast.error(response.message || "Erro ao buscar as mensagens da conta");
           return;
         }
         console.log("Resposta da dsadsada API:", response);
