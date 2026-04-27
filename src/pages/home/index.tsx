@@ -10,22 +10,29 @@ import { Card } from "@/components/Card";
 import { useTheme } from "next-themes";
 
 export default function Home() {
-  const { selectedAccount } = useOutletContext<{
-    selectedAccount: string | null;
+  const { selectedAccountId, selectedAccountName } = useOutletContext<{
+    selectedAccountId: string | null;
+    selectedAccountName: string | null;
   }>();
   const { theme } = useTheme();
+  const [nameAccount, setNameAccount] = useState<string | null>(null);
   const [accountData, setAccountData] = useState<IAccount | undefined>(
     undefined,
   );
   const [removed, setRemoved] = useState(false);
   useEffect(() => {
-    if (selectedAccount !== null) {
+    if (selectedAccountId !== null) {
       async function fetchMenu() {
-        const response = await AccountsMessage({ id: Number(selectedAccount) });
+        const response = await AccountsMessage({
+          id: Number(selectedAccountId),
+        });
         if (!response.success) {
-          toast.error(response.message || "Erro ao buscar as mensagens da conta");
+          toast.error(
+            response.message || "Erro ao buscar as mensagens da conta",
+          );
           return;
         }
+        setNameAccount(selectedAccountName);
         setAccountData(response.data);
       }
       fetchMenu();
@@ -33,7 +40,7 @@ export default function Home() {
       setAccountData(undefined);
       setRemoved(false);
     }
-  }, [selectedAccount]);
+  }, [selectedAccountId]);
 
   return (
     <section className="flex flex-col h-full pb-[20px]">
@@ -55,7 +62,11 @@ export default function Home() {
             Nenhum item encontrado.
           </p>
         ) : (
-          <Card accountData={accountData} removed={removed} />
+          <Card
+            accountData={accountData}
+            removed={removed}
+            selectAccounted={nameAccount || ""}
+          />
         )}
       </div>
     </section>

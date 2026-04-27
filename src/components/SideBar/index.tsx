@@ -33,15 +33,23 @@ import type { ISidebar } from "@/interfaces/components/Sidebar/interface";
 export function AppSidebar({
   onAccountSelect,
   isMobile,
+  accountSelected
 }: IGlobalOnAccountSelect & ISidebar) {
   const { theme } = useTheme();
   const router = useNavigate();
   const [menuData, setMenuData] = useState<IMenusAccount[] | undefined>(
     undefined,
   );
-
   const Container = isMobile ? "div" : Sidebar;
+  const borderClass =
+    theme === "light"
+      ? "lg:border-r border-black/60 "
+      : " lg:border-r border-[#E2E8F0]/10 ";
 
+  function handleAccountSelect(id: string, name: string) {
+    onAccountSelect(id);
+    accountSelected(name); 
+  }
   useEffect(() => {
     async function fetchMenu() {
       const response = await MenusAccount();
@@ -55,32 +63,19 @@ export function AppSidebar({
     fetchMenu();
   }, []);
   return (
-    <Container
-      className={`
-        ${
-          isMobile
-            ? ""
-            : theme === "light"
-              ? "border-l border-black/60"
-              : "border-r border-[#E2E8F0]/10"
-        }`}
-    >
+    <Container className={borderClass}>
       <SidebarHeader>
-        <h2
-          className={`font-bold text-[22px] ${theme === "light" ? "text-[#0F172A]" : "text-[#5084FF]"}`}
-        >
+        <h2 className={`font-bold text-[22px] text-title-sidebar `}>
           Caixa de entrada
         </h2>
-        <p
-          className={`font-medium text-[14px] ${theme === "light" ? "text-[#64748B]" : "text-[#FFFFFF]"}`}
-        >
+        <p className={`font-medium text-[14px] text-subtitle-sidebar `}>
           Painel de suporte
         </p>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup className="flex flex-col pt-[32px]">
+        <SidebarGroup className="flex flex-col pt-[32px] ">
           <SidebarGroup>
-            <SidebarMenu className="flex flex-row w-[full] justify-between items-center">
+            <SidebarMenu className="flex flex-row w-full justify-between items-center">
               <SidebarMenu className="flex flex-row gap-[12px] items-center">
                 <FaRegStar size={18} />
                 <h3 className="font-semibold text-[13px] text-text-sidebar">
@@ -93,8 +88,8 @@ export function AppSidebar({
               Accounts
             </SidebarGroupLabel>
             {menuData &&
-              menuData.map((itens, index) => (
-                <Collapsible key={index} defaultOpen className="pt-[12px]">
+              menuData.map((menu) => (
+                <Collapsible key={menu.id} defaultOpen className="pt-[12px]">
                   <CollapsibleTrigger
                     asChild
                     className="flex flex-col  min-w-full "
@@ -108,27 +103,26 @@ export function AppSidebar({
                           color={`var(--color-text-sidebar)`}
                         />
                         <h3 className="font-semibold text-[13px] text-text-sidebar">
-                          {itens.name}
+                          {menu.name}
                         </h3>
                       </SidebarMenu>
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
 
                   <CollapsibleContent>
-                    {itens.subMenus.map((subItens, subIndex) => (
-                      <SidebarMenuSub key={subIndex}>
+                    {menu.subMenus.map((subMenu) => (
+                      <SidebarMenuSub key={subMenu.id}>
                         <SidebarMenuSubItem>
                           <SidebarMenuSubButton
                             className="cursor-pointer hover:bg-blue-500/35"
                             onClick={() => {
-                              onAccountSelect(subItens.id.toString());
-                              localStorage.setItem(
-                                "selectedAccount",
-                                subItens.name.toString(),
+                              handleAccountSelect(
+                                subMenu.id.toString(),
+                                subMenu.name.toString(),
                               );
                             }}
                           >
-                            <span>{subItens.name}</span>
+                            <span>{subMenu.name}</span>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
                       </SidebarMenuSub>

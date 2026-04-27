@@ -4,16 +4,16 @@ import EmailLight from "@/assets/svg/emailLight.svg";
 import { MdEmail } from "react-icons/md";
 import EmailDark from "@/assets/svg/emailDark.svg";
 import Form from "@/components/Form";
-import { DataForm } from "./data";
+import { useSignInForm } from "./useSignInForm";
 import { ToggleTheme } from "@/ui/toggleTheme";
 
-export default function SingIn() {
+export default function SignIn() {
   const { theme } = useTheme();
   const currentTheme = theme ?? "light";
-  const data = DataForm();
-
+  const data = useSignInForm();
+  const emailImage = currentTheme === "light" ? EmailLight : EmailDark;
   return (
-    <section className="flex flex-row h-screen overflow-hidden overscroll-y-none overscroll-x-none">
+    <section className="flex flex-row h-screen overflow-hidden overscroll-none">
       <header className="fixed top-[16px] left-[24px] right-[24px] z-10 flex items-center justify-between">
         <img src={EnContactLogo} alt="EnContact Logo" className="w-16 h-16" />
         <ToggleTheme />
@@ -33,19 +33,8 @@ export default function SingIn() {
               Comunicação de alto crescimento para equipes modernas. Segura,
               rápida e incrivelmente intuitiva.
             </p>
-            {currentTheme === "light" ? (
-              <img
-                src={EmailLight}
-                alt="Email Light"
-                className="max-w-[233px] max-h-[214px]"
-              />
-            ) : (
-              <img
-                src={EmailDark}
-                alt="Email Dark"
-                className="max-w-[233px] max-h-[214px]"
-              />
-            )}
+
+              <img src={emailImage} alt="Ilustração de email" className="max-w-[233px] max-h-[214px]" />
           </div>
         </div>
       </div>
