@@ -6,6 +6,7 @@ import Archive from "@/assets/svg/archive.svg";
 
 import { toast } from "sonner";
 import { Button } from "@/ui/button";
+import { Card } from "@/components/Card";
 
 export default function Home() {
   const { selectedAccount } = useOutletContext<{
@@ -15,9 +16,6 @@ export default function Home() {
     undefined,
   );
   const [removed, setRemoved] = useState(false);
-  console.log("selectedAccountId home:", selectedAccount);
-
-  
   useEffect(() => {
     if (selectedAccount !== null) {
       async function fetchMenu() {
@@ -31,6 +29,7 @@ export default function Home() {
       }
       fetchMenu();
       // eslint-disable-next-line react-hooks/set-state-in-effect
+      setAccountData(undefined);
       setRemoved(false);
     }
   }, [selectedAccount]);
@@ -47,48 +46,7 @@ export default function Home() {
           <h1 className="text-white text-[18px] ">Arquivar</h1>
         </Button>
       </div>
-      {accountData && !removed ? (
-        accountData.subMenuItems.map((subItem, index) => (
-          <div
-            key={index}
-            className="px-[16px] py-[16px] border-b border-[#FFFF] flex flex-row items-center gap-[16px]"
-          >
-            <div className="w-[50px] h-[50px] bg-gradient-button rounded-full flex items-center justify-center">
-              <h4 className="text-white  uppercase text-[14px]">
-                {subItem.owner}{" "}
-              </h4>
-            </div>
-            <div className="flex flex-col gap-[2px] w-full">
-              <h2 className="font-bold text-[16px] text-[white]">
-                {subItem.name}
-              </h2>
-              <h3 className="font-semibold text-[14px]">{subItem.subject}</h3>
-              <div className="flex flex-row w-full justify-between">
-                <p className="text-[#64748B] text-[14px] font-normal">
-                  Olá, gostaria de saber o status do meu pedido feito na semana
-                  passada...
-                </p>
-                <div className="flex flex-row gap-[5px]">
-                  {subItem.users.map((user, userIndex) => (
-                    <div
-                      key={userIndex}
-                      className="w-[40px] h-[40px] bg-gradient-button rounded-full flex items-center justify-center"
-                    >
-                      <h4 className="text-white  uppercase text-[14px]">
-                        {user}
-                      </h4>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        ))
-      ) : (
-        <h1 className="text-white pl-[16px] text-[18px] font-bold">
-          Selecione uma conta para visualizar as mensagens
-        </h1>
-      )}
+      <Card accountData={accountData} removed={removed} />
     </section>
   );
 }

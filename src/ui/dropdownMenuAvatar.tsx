@@ -47,7 +47,7 @@ export function DropdownMenuAvatar() {
         <DropdownMenuSeparator />
         <DropdownMenuItem className="text-red-500" onClick={() => router("/")}>
           <LogOutIcon />
-          Sign Out
+          Sair
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

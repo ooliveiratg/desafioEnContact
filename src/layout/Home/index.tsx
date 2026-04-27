@@ -1,4 +1,4 @@
-import { ResizablePanelGroup, ResizablePanel } from "@/components/ui/resizable";
+import { ResizablePanelGroup, ResizablePanel } from "@/ui/resizable";
 import { Header } from "@/components/Header";
 import { AppSidebar } from "@/components/SideBar";
 import { SidebarProvider } from "@/ui/sidebar";

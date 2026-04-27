@@ -21,7 +21,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../ui/collapsible";
+} from "../../ui/collapsible";
 import { MenusAccount } from "@/services/menusAccount";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
