@@ -26,7 +26,6 @@ export default function Home() {
           toast.error(response.message || "Erro ao buscar os menus");
           return;
         }
-        console.log("Resposta da dsadsada API:", response);
         setAccountData(response.data);
       }
       fetchMenu();

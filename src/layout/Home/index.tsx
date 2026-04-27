@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 export function LayoutHome() {
   const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
   const [ismobile, setIsMobile] = useState(window.innerWidth < 768);
-  console.log("selectedAccountdddasdada:", selectedAccount);
 
   useEffect(() => {
     function handleResize() {
