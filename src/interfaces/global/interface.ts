@@ -1,3 +1,3 @@
 export interface IGlobalOnAccountSelect {
-    onAccountSelect: (accountId: string) => void | null;
+    onAccountSelect: (accountId: string) => void;
 }
