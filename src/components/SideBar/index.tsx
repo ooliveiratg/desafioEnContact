@@ -41,11 +41,6 @@ export function AppSidebar({
   );
 
   const Container = isMobile ? "div" : Sidebar;
-  const containerClassName = isMobile
-    ? ""
-    : theme === "light"
-      ? "border-l border-black/60"
-      : "border-r border-[#E2E8F0]/10";
 
   useEffect(() => {
     async function fetchMenu() {
@@ -60,7 +55,16 @@ export function AppSidebar({
     fetchMenu();
   }, []);
   return (
-    <Container className={containerClassName}>
+    <Container
+      className={`
+        ${
+          isMobile
+            ? ""
+            : theme === "light"
+              ? "border-l border-black/60"
+              : "border-r border-[#E2E8F0]/10"
+        }`}
+    >
       <SidebarHeader>
         <h2
           className={`font-bold text-[22px] ${theme === "light" ? "text-[#0F172A]" : "text-[#5084FF]"}`}
