@@ -24,10 +24,11 @@ export function Card({ accountData, removed, selectAccounted }: ICard) {
     theme === "light" ? "border-b border-black/60" : "border-b border-white";
   const checkBtnClass = theme === "light" ? "bg-black/90" : "bg-white/10";
   const getCardBackground = (index: number) => {
-  if (active === index) return "bg-cards-hover"
-  if (checked.includes(index) && !active) return "bg-white/10 hover:bg-white/10"
-  return "hover:bg-white/10 bg-transparent"
-}
+    if (active === index) return "bg-cards-hover";
+    if (checked.includes(index) && active === null)
+      return "bg-white/10 hover:bg-white/10";
+    return "hover:bg-white/10 bg-transparent";
+  };
   return (
     <>
       {accountData && !removed ? (
