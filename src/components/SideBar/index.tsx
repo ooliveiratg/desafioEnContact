@@ -27,14 +27,25 @@ import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import type { IMenusAccount } from "@/interfaces/services/interface";
 import Inbox from "@/assets/svg/inbox.svg";
-import type { IAppSidebar } from "@/interfaces/components/Sidebar/interface";
+import type { IGlobalOnAccountSelect } from "@/interfaces/global/interface";
+import type { ISidebar } from "@/interfaces/components/Sidebar/interface";
 
-export function AppSidebar({ onAccountSelect }: IAppSidebar) {
+export function AppSidebar({
+  onAccountSelect,
+  isMobile,
+}: IGlobalOnAccountSelect & ISidebar) {
   const { theme } = useTheme();
   const router = useNavigate();
   const [menuData, setMenuData] = useState<IMenusAccount[] | undefined>(
     undefined,
   );
+
+  const Container = isMobile ? "div" : Sidebar;
+  const containerClassName = isMobile
+    ? ""
+    : theme === "light"
+      ? "border-l border-black/60"
+      : "border-r border-[#E2E8F0]/10";
 
   useEffect(() => {
     async function fetchMenu() {
@@ -49,16 +60,10 @@ export function AppSidebar({ onAccountSelect }: IAppSidebar) {
     fetchMenu();
   }, []);
   return (
-    <Sidebar
-      className={
-        theme === "light"
-          ? "border-l border-black/60"
-          : "border-r border-[#E2E8F0]/10"
-      }
-    >
+    <Container className={containerClassName}>
       <SidebarHeader>
         <h2
-          className={`font-boldtext-[22px] ${theme === "light" ? "text-[#0F172A]" : "text-[#5084FF]"}`}
+          className={`font-bold text-[22px] ${theme === "light" ? "text-[#0F172A]" : "text-[#5084FF]"}`}
         >
           Caixa de entrada
         </h2>
@@ -74,7 +79,9 @@ export function AppSidebar({ onAccountSelect }: IAppSidebar) {
             <SidebarMenu className="flex flex-row w-[full] justify-between items-center">
               <SidebarMenu className="flex flex-row gap-[12px] items-center">
                 <FaRegStar size={18} />
-                <h3 className="font-semibold text-[13px] text-text-sidebar">Total</h3>
+                <h3 className="font-semibold text-[13px] text-text-sidebar">
+                  Total
+                </h3>
               </SidebarMenu>
               <p className="font-bold text-[12px]">62</p>
             </SidebarMenu>
@@ -88,9 +95,14 @@ export function AppSidebar({ onAccountSelect }: IAppSidebar) {
                     asChild
                     className="flex flex-col  min-w-full "
                   >
-                    <SidebarMenuButton className={`flex flex-row w-[full] gap-[12px] justify-between items-center cursor-pointer ${theme === "light" ? "hover:bg-blue-500/50" : "hover:bg-blue-500/30"}`}>
+                    <SidebarMenuButton
+                      className={`flex flex-row w-[full] gap-[12px] justify-between items-center cursor-pointer ${theme === "light" ? "hover:bg-blue-500/50" : "hover:bg-blue-500/30"}`}
+                    >
                       <SidebarMenu className="flex flex-row gap-[12px] items-center">
-                        <HiMiniUsers size={18}  color={`var(--color-text-sidebar)`} />
+                        <HiMiniUsers
+                          size={18}
+                          color={`var(--color-text-sidebar)`}
+                        />
                         <h3 className="font-semibold text-[13px] text-text-sidebar">
                           {itens.name}
                         </h3>
@@ -100,16 +112,19 @@ export function AppSidebar({ onAccountSelect }: IAppSidebar) {
 
                   <CollapsibleContent>
                     {itens.subMenus.map((subItens, subIndex) => (
-                      <SidebarMenuSub key={subIndex}  >
+                      <SidebarMenuSub key={subIndex}>
                         <SidebarMenuSubItem>
                           <SidebarMenuSubButton
-                          className="cursor-pointer hover:bg-blue-500/35"
+                            className="cursor-pointer hover:bg-blue-500/35"
                             onClick={() => {
                               onAccountSelect(subItens.id.toString());
-                              localStorage.setItem("selectedAccount", subItens.name.toString());
+                              localStorage.setItem(
+                                "selectedAccount",
+                                subItens.name.toString(),
+                              );
                             }}
                           >
-                            <span >{subItens.name}</span>
+                            <span>{subItens.name}</span>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
                       </SidebarMenuSub>
@@ -127,24 +142,26 @@ export function AppSidebar({ onAccountSelect }: IAppSidebar) {
             </SidebarMenu>
           </SidebarGroup>
 
-          <SidebarFooter className="flex flex-col">
-            <div className="flex w-full h-[1px] bg-white mb-[12px]" />
-            <SidebarMenu className="flex flex-row gap-[12px] items-center pt-[12px]">
-              <Button
-                variant={"ghost"}
-                className="cursor-pointer"
-                onClick={() => router("/")}
-              >
-                <RxExit size={18} color="#FF0000" />
-                <h3 className="font-semibold text-[13px] text-[#FF0000]">
-                  Sair
-                </h3>
-              </Button>
-            </SidebarMenu>
-          </SidebarFooter>
+          {!isMobile && (
+            <SidebarFooter className="flex flex-col">
+              <div className="flex w-full h-[1px] bg-white mb-[12px]" />
+              <SidebarMenu className="flex flex-row gap-[12px] items-center pt-[12px]">
+                <Button
+                  variant={"ghost"}
+                  className="cursor-pointer"
+                  onClick={() => router("/")}
+                >
+                  <RxExit size={18} color="#FF0000" />
+                  <h3 className="font-semibold text-[13px] text-[#FF0000]">
+                    Sair
+                  </h3>
+                </Button>
+              </SidebarMenu>
+            </SidebarFooter>
+          )}
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter />
-    </Sidebar>
+    </Container>
   );
 }

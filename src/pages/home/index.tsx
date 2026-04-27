@@ -37,7 +37,7 @@ export default function Home() {
   }, [selectedAccount]);
 
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col h-full pb-[20px]">
       <div
         className={`w-full h-[77px] border-b pl-[16px] ${theme === "light" ? "border-black/60" : "border-white"} flex items-center`}
       >
@@ -50,13 +50,15 @@ export default function Home() {
           <h1 className=" text-[18px]">Arquivar</h1>
         </Button>
       </div>
-      {accountData && accountData.subMenuItems.length === 0 ? (
-        <p className="pl-[16px] text-[18px] font-bold">
-          Nenhum item encontrado.
-        </p>
-      ) : (
-        <Card accountData={accountData} removed={removed} />
-      )}
+      <div className="flex flex-col w-full h-full oveflow-y-auto">
+        {accountData && accountData.subMenuItems.length === 0 ? (
+          <p className="pl-[16px] text-[18px] font-bold">
+            Nenhum item encontrado.
+          </p>
+        ) : (
+          <Card accountData={accountData} removed={removed} />
+        )}
+      </div>
     </section>
   );
 }

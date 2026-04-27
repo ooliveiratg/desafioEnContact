@@ -25,7 +25,6 @@ export async function AccountsMessage({ id }: IAccountsMessage) {
         message: "Erro na resposta da API",
       };
     }
-    console.log("Resposta da API:", response);
     const json: IAccount = await response.json();
     return {
       success: true,

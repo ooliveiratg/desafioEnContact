@@ -1,3 +1,3 @@
-export interface IAppSidebar {
-  onAccountSelect: (accountId: string) => void | null;
+export interface ISidebar {
+    isMobile: boolean;
 }

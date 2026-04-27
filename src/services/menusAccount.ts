@@ -22,7 +22,6 @@ export async function MenusAccount() {
         message: "Erro na resposta da API",
       };
     }
-    console.log("Resposta da API:", response);
     const json: IMenusAccount[] = await response.json();
     return {
       success: true,
