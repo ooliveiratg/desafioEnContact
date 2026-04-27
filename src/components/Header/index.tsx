@@ -30,7 +30,7 @@ export function Header({ onAccountSelect }: IGlobalOnAccountSelect) {
             iconLeft={<IoSearch color="#94A3B8" size={18} />}
             placeholder="Pesquisar conversas..."
             typeInputWithIcon="secondary"
-            alt="barra de pesquisa"
+            aria-label="barra de pesquisa"
             icon={true}
             className="border-none focus:outline-none focus:ring-0 focus:border-transparent"
           />
