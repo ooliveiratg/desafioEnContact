@@ -11,7 +11,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { AppSidebar } from "../SideBar";
 import type { IGlobalOnAccountSelect } from "@/interfaces/global/interface";
 import { SidebarProvider } from "@/ui/sidebar";
-export function MobileSidebar({ onAccountSelect }: IGlobalOnAccountSelect) {
+export function MobileSidebar({ onAccountSelect, accountSelected }: IGlobalOnAccountSelect) {
   return (
 
     <Sheet>
@@ -28,7 +28,7 @@ export function MobileSidebar({ onAccountSelect }: IGlobalOnAccountSelect) {
         </SheetHeader>
         <SidebarProvider className="h-full w-full px-[16px]">
           <div className="h-full w-full">
-            <AppSidebar onAccountSelect={onAccountSelect} isMobile />
+            <AppSidebar onAccountSelect={onAccountSelect} isMobile accountSelected={accountSelected} />
           </div>
         </SidebarProvider>
       </SheetContent>

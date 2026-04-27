@@ -8,7 +8,7 @@ import { MobileSidebar } from "../MobileSidebar";
 import type { IGlobalOnAccountSelect } from "@/interfaces/global/interface";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-export function Header({ onAccountSelect }: IGlobalOnAccountSelect) {
+export function Header({ onAccountSelect, accountSelected }: IGlobalOnAccountSelect) {
   const { theme } = useTheme();
   const isMobile = useIsMobile()
 
@@ -23,7 +23,7 @@ export function Header({ onAccountSelect }: IGlobalOnAccountSelect) {
           className="w-[80px] h-[80px]"
         />
         <div className="md:hidden">
-          <MobileSidebar onAccountSelect={onAccountSelect} />
+          <MobileSidebar onAccountSelect={onAccountSelect} accountSelected={accountSelected} />
         </div>
         {!isMobile && (
           <Input

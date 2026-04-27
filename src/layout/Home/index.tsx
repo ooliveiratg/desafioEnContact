@@ -3,7 +3,7 @@ import { Header } from "@/components/Header";
 import { AppSidebar } from "@/components/SideBar";
 import { SidebarProvider } from "@/ui/sidebar";
 import { Outlet } from "react-router-dom";
-import {  useState } from "react";
+import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export function LayoutHome() {
@@ -20,6 +20,7 @@ export function LayoutHome() {
       <div className="flex flex-col h-full w-full ">
         <Header
           onAccountSelect={(accountId) => setSelectedAccountId(accountId)}
+          accountSelected={(accountName) => setSelectedAccountName(accountName)}
         />
 
         <ResizablePanelGroup
@@ -31,7 +32,9 @@ export function LayoutHome() {
               <AppSidebar
                 onAccountSelect={(accountId) => setSelectedAccountId(accountId)}
                 isMobile={false}
-                accountSelected={(accountName) => setSelectedAccountName(accountName)}
+                accountSelected={(accountName) =>
+                  setSelectedAccountName(accountName)
+                }
               />
             </ResizablePanel>
           )}
