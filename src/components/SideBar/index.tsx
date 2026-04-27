@@ -58,7 +58,7 @@ export function AppSidebar({ onAccountSelect }: IAppSidebar) {
     >
       <SidebarHeader>
         <h2
-          className={`font-bold text-[#0F172A] text-[22px] ${theme === "light" ? "text-[#0F172A]" : "text-[#5084FF]"}`}
+          className={`font-boldtext-[22px] ${theme === "light" ? "text-[#0F172A]" : "text-[#5084FF]"}`}
         >
           Caixa de entrada
         </h2>
@@ -74,7 +74,7 @@ export function AppSidebar({ onAccountSelect }: IAppSidebar) {
             <SidebarMenu className="flex flex-row w-[full] justify-between items-center">
               <SidebarMenu className="flex flex-row gap-[12px] items-center">
                 <FaRegStar size={18} />
-                <h3 className="font-semibold text-[13px] text-white">Total</h3>
+                <h3 className="font-semibold text-[13px] text-text-sidebar">Total</h3>
               </SidebarMenu>
               <p className="font-bold text-[12px]">62</p>
             </SidebarMenu>
@@ -88,30 +88,28 @@ export function AppSidebar({ onAccountSelect }: IAppSidebar) {
                     asChild
                     className="flex flex-col  min-w-full "
                   >
-                    <SidebarMenuButton className="flex flex-row w-[full] gap-[12px] justify-between items-center">
+                    <SidebarMenuButton className={`flex flex-row w-[full] gap-[12px] justify-between items-center cursor-pointer ${theme === "light" ? "hover:bg-blue-500/50" : "hover:bg-blue-500/30"}`}>
                       <SidebarMenu className="flex flex-row gap-[12px] items-center">
-                        <HiMiniUsers size={18} />
-                        <h3 className="font-semibold text-[13px] text-white">
+                        <HiMiniUsers size={18}  color={`var(--color-text-sidebar)`} />
+                        <h3 className="font-semibold text-[13px] text-text-sidebar">
                           {itens.name}
                         </h3>
                       </SidebarMenu>
-                      <div className="bg-white/10 px-[8px] rounded-full">
-                        <p className="font-bold text-[12px]">62</p>
-                      </div>
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
 
                   <CollapsibleContent>
                     {itens.subMenus.map((subItens, subIndex) => (
-                      <SidebarMenuSub key={subIndex}>
+                      <SidebarMenuSub key={subIndex}  >
                         <SidebarMenuSubItem>
                           <SidebarMenuSubButton
+                          className="cursor-pointer hover:bg-blue-500/35"
                             onClick={() => {
                               onAccountSelect(subItens.id.toString());
+                              localStorage.setItem("selectedAccount", subItens.name.toString());
                             }}
                           >
-                            <span>{subItens.name}</span>
-                            <span className="ml-auto">15</span>
+                            <span >{subItens.name}</span>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
                       </SidebarMenuSub>

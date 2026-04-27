@@ -7,11 +7,13 @@ import Archive from "@/assets/svg/archive.svg";
 import { toast } from "sonner";
 import { Button } from "@/ui/button";
 import { Card } from "@/components/Card";
+import { useTheme } from "next-themes";
 
 export default function Home() {
   const { selectedAccount } = useOutletContext<{
     selectedAccount: string | null;
   }>();
+  const { theme } = useTheme();
   const [accountData, setAccountData] = useState<IAccount | undefined>(
     undefined,
   );
@@ -36,17 +38,25 @@ export default function Home() {
 
   return (
     <section className="flex flex-col">
-      <div className="w-full h-[77px] border-b pl-[16px] border-amber-500 flex items-center">
+      <div
+        className={`w-full h-[77px] border-b pl-[16px] ${theme === "light" ? "border-black/60" : "border-white"} flex items-center`}
+      >
         <Button
           onClick={() => setRemoved(true)}
           variant={"ghost"}
-          className="flex flex-row gap-[8px] cursor-pointer"
+          className={`flex flex-row gap-[8px] ${theme === "light" ? "hover:bg-black/30" : ""}`}
         >
           <img src={Archive} alt="archive" />
-          <h1 className="text-white text-[18px] ">Arquivar</h1>
+          <h1 className=" text-[18px]">Arquivar</h1>
         </Button>
       </div>
-      <Card accountData={accountData} removed={removed} />
+      {accountData && accountData.subMenuItems.length === 0 ? (
+        <p className="pl-[16px] text-[18px] font-bold">
+          Nenhum item encontrado.
+        </p>
+      ) : (
+        <Card accountData={accountData} removed={removed} />
+      )}
     </section>
   );
 }

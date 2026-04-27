@@ -11,15 +11,13 @@ export interface IMenusAccount {
 
 export interface IAccount {
   id: number;
-  subMenuItems: [
-    {
+  subMenuItems: {
       id: string
       name: string;
       subject: string;
       owner: string;
       users: [string];
-    },
-  ];
+    }[]
 }
 
 export interface IAccountsMessage {
