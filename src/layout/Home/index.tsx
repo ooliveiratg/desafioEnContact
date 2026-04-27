@@ -15,7 +15,7 @@ export function LayoutHome() {
     }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  });
+  },[]);
   return (
     <SidebarProvider className="h-screen ">
       <div className="flex flex-col h-full w-full ">

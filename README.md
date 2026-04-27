@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+# Desafio EnContact
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação front-end desenvolvida em React, TypeScript e Vite para simular uma interface de atendimento com tela de login, inbox, sidebar e visualização de mensagens.
 
-Currently, two official plugins are available:
+## Visão geral
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+O projeto está organizado para demonstrar:
 
-## React Compiler
+- autenticação com credenciais de teste
+- navegação entre login e área interna
+- layout responsivo com sidebar e header
+- uso de componentes reutilizáveis e serviços para consumo de dados
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack
 
-## Expanding the ESLint configuration
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router DOM
+- next-themes
+- sonner
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Como rodar
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Instale as dependências:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Inicie o ambiente de desenvolvimento:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm dev
 ```
+
+3. Para gerar build de produção:
+
+```bash
+pnpm build
+```
+
+4. Para validar lint:
+
+```bash
+pnpm lint
+```
+
+## Credenciais de acesso
+
+Este projeto usa credenciais fixas apenas para demonstração do fluxo de login.
+
+- E-mail: `admin@admin`
+- Senha: `admin`
+
+## Estrutura do projeto
+
+- `src/pages`: páginas da aplicação
+- `src/layout`: layouts de tela
+- `src/components`: componentes de interface
+- `src/services`: acesso aos dados e integração com API
+- `src/ui`: primitives e componentes base de UI
+- `src/interfaces`: tipos e contratos TypeScript
+- `src/styles`: estilos globais e tokens de tema
+
+## Funcionalidades
+
+- tela de login com validação simples
+- alternância de tema claro/escuro
+- sidebar responsiva para desktop e mobile
+- listagem de menus e mensagens
+- feedback visual com toasts
+
+## Variáveis de ambiente
+
+O projeto consome APIs externas por meio destas variáveis:
+
+- `VITE_API_URL_CONTACTS`
+- `VITE_API_URL_MENUS`
+
+Se elas não estiverem configuradas, os serviços retornam mensagem de erro amigável.
+
