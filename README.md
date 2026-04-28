@@ -39,6 +39,3 @@ pnpm build
 
 Se não fornecidas, os serviços mostram mensagens de erro amigáveis.
 
----
-
-Se quiser, eu deixo esse README ainda mais enxuto (ex.: apenas comandos essenciais) ou adiciono instruções de deploy/docker. Diga sua preferência.
